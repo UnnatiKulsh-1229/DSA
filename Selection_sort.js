@@ -1,4 +1,4 @@
-selectionSort(arr) {
+selectionSort(arr){
         // your code here
         let n=arr.length;
         for(let i=0;i<n;i++){
@@ -13,4 +13,4 @@ selectionSort(arr) {
             arr[i]=temp;
         }
         return arr;
-    }
+}
