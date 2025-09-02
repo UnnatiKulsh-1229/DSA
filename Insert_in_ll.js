@@ -35,3 +35,25 @@ class Solution {
         return head; 
     }
 }
+
+//Insert at specific position
+class Solution {
+    insertPos(head, pos, val) {
+        // code here
+        if(pos<1) return head;
+        if (pos === 1) {
+        let newNode = new Node(val);
+        newNode.next = head;
+        return newNode;
+    }
+    let curr=head;
+    for (let i = 1; i < pos - 1 && curr !== null; i++) {
+        curr = curr.next;
+    }
+    if (curr === null) return head;
+    let newNode = new Node(val);
+    newNode.next = curr.next;
+    curr.next = newNode;
+    return head;
+    }
+}
