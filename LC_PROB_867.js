@@ -7,4 +7,4 @@ var transpose = function(matrix){
         }
     }
     return result;
-};
+}; 
