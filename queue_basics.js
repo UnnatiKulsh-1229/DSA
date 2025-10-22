@@ -101,3 +101,61 @@ MyQueue.prototype.empty = function() {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
+
+//Queue using linked list
+// Node class
+class Node {
+    constructor(new_data) {
+        this.data = new_data;
+        this.next = null;
+    }
+}
+
+class myQueue {
+    constructor() {
+        // Initialize your data members
+        this.front=null;
+        this.rear=null;
+        this.len=0;
+    }
+
+    isEmpty() {
+        // Return true if queue is empty, else false
+        return (this.front===null &&this.rear===null);
+    }
+
+    enqueue(x) {
+        // Add element x to rear of queue
+        let newnode=new Node(x)
+        if(this.isEmpty()){
+            this.rear=this.front=newnode;
+        }
+        else{
+            this.rear.next=newnode;
+            this.rear=newnode;
+        }
+        this.len++;
+    }
+
+    dequeue() {
+        // Remove front element
+        if(this.isEmpty()) return -1;
+        let val=this.front.data;
+        this.front=this.front.next;
+        if(this.front===null){
+            this.rear=null;
+        }
+        this.len--;
+        return val;
+    }
+    getFront() {
+        if(this.isEmpty()) return -1;
+        return this.front.data;
+        // Return front element; return -1 if empty
+    }
+
+    size() {
+        // Return current size of the queue
+        return this.len;
+    }
+}
