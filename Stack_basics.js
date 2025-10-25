@@ -145,3 +145,51 @@ class Solution {
         return stack[stack.length-1];
     }
 }
+
+//expression conversion (infix to postfix)(GFG)
+class Solution {
+    priority(c) {
+        if (c === '^') return 3;
+        else if (c === '*' || c === '/') return 2;
+        else if (c === '+' || c === '-') return 1;
+        return -1;
+    }
+    infixToPostfix(s) {
+        let stack = [];
+        let res = "";
+
+        for (let i = 0; i < s.length; i++) {
+            let ch = s[i];
+
+            if ((ch >= 'A' && ch <= 'Z') ||
+                (ch >= 'a' && ch <= 'z') ||
+                (ch >= '0' && ch <= '9')) {
+                res += ch;
+            }
+            else if (ch === '(') {
+                stack.push(ch);
+            }
+            else if (ch === ')') {
+                while (stack.length > 0 && stack[stack.length - 1] !== '(') {
+                    res += stack.pop();
+                }
+                stack.pop(); 
+               }
+            else {
+                while (
+                    stack.length > 0 &&
+                    this.priority(ch) <= this.priority(stack[stack.length - 1]) &&
+                    !(ch === '^' && stack[stack.length - 1] === '^')
+                ) {
+                    res += stack.pop();
+                }
+                stack.push(ch);
+            }
+        }
+        while (stack.length > 0) {
+            res += stack.pop();
+        }
+        return res;
+    }
+}
+
