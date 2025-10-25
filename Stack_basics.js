@@ -120,3 +120,28 @@ class myStack {
         
     }
 }
+
+//expression conversion (prefix to infix)(GFG)
+class Solution {
+    // Function to covert prefix expression to infix expression.
+    
+    preToInfix(pre_exp) {
+        // your code here
+        let n=pre_exp.length;
+        let i=n-1;
+        let stack=[];
+        while(i>=0){
+            if((pre_exp[i]>="A" && pre_exp[i]<="Z")||(pre_exp[i]>="a"&& pre_exp[i]<="z")||(pre_exp[i]>=0&& pre_exp[i]<=9)) stack.push(pre_exp[i])
+            else{
+                let temp=stack[stack.length-1];
+                stack.pop();
+                let temp2=stack[stack.length-1];
+                stack.pop();
+                let com="("+ temp +pre_exp[i]+temp2+")";
+                stack.push(com);
+            }
+            i--;
+        }
+        return stack[stack.length-1];
+    }
+}
