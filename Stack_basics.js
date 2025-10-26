@@ -218,3 +218,29 @@ class Solution {
     }
 }
 
+//Postfix to prefix expression(GFG)
+class Solution {
+    // Function to find a continuous sub-array which adds up to a given number.
+    postToPre(post_exp) {
+        // your code here
+        let n=post_exp.length;
+        let i=0;
+        let stack=[];
+        while(i<n){
+            if((post_exp[i]>="A"&&post_exp[i]<="Z")||(post_exp[i]>="a"&& post_exp[i]<="z")||(post_exp[i]>=0&& post_exp[i]>=9)){
+                stack.push(post_exp[i]);
+            }
+            else{
+                let top1=stack[stack.length-1];
+                stack.pop();
+                let top2=stack[stack.length-1];
+                stack.pop();
+                stack.push(post_exp[i]+top2+top1);
+            }
+            i++;
+        }
+        return stack[stack.length-1];
+        
+    }
+}
+
