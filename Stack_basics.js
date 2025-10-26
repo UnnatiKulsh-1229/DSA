@@ -193,3 +193,28 @@ class Solution {
     }
 }
 
+//Prefix to postfix expression(GFG)
+class Solution {
+    // Function to convert prefix expression to postfix expression.
+    preToPost(pre_exp) {
+        // your code here
+        let n=pre_exp.length;
+        let i=n-1;
+        let stack=[];
+        while(i>=0){
+            if((pre_exp[i]>="A"&&pre_exp[i]<="Z")||(pre_exp[i]>="a"&&pre_exp[i]<="z")||(pre_exp[i]>=0&& pre_exp[i]<=9)){
+                stack.push(pre_exp[i]);
+            }
+            else{
+                let top1=stack[stack.length-1];
+                stack.pop();
+                let top2=stack[stack.length-1];
+                stack.pop();
+                stack.push(top1+top2+pre_exp[i]);
+            }
+            i--;
+        }
+        return stack[stack.length-1];
+    }
+}
+
