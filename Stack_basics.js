@@ -244,3 +244,28 @@ class Solution {
     }
 }
 
+//Postfix to infix(GFG)
+class Solution {
+    // Function to convert postfix expression to infix expression.
+    postToInfix(postfix) {
+        // your code here
+        let stack=[];
+        let i=0;
+        while(i<postfix.length){
+            if((postfix[i]>="a"&& postfix[i]<="z")||(postfix[i]>="A" && postfix[i]<="Z")||(postfix[i]>=0&&postfix[i]<=9)){
+                stack.push(postfix[i]);
+            }
+            else{
+                let top1=stack[stack.length-1];
+                stack.pop();
+                let top2=stack[stack.length-1];
+                stack.pop();
+                let con="("+top2+ postfix[i]+top1+")";
+                stack.push(con);
+            }
+            i++;
+        }
+        return stack[stack.length-1];
+    }
+}
+
