@@ -269,3 +269,53 @@ class Solution {
     }
 }
 
+//Infix to prefix(GFG)
+class Solution {
+    priority(c) {
+        if (c === '^') return 3;
+        else if (c === '*' || c === '/') return 2;
+        else if (c === '+' || c === '-') return 1;
+        return -1;
+    }
+
+    infixToPrefix(s) {
+        s = s.split('').reverse().join('');
+        s = s.replace(/\(/g, '#')
+             .replace(/\)/g, '(')
+             .replace(/#/g, ')');
+        let stack = [];
+        let res = "";
+        for (let i = 0; i < s.length; i++) {
+            if ((s[i] >= 'A' && s[i] <= 'Z') ||
+                (s[i] >= 'a' && s[i] <= 'z') ||
+                (s[i] >= '0' && s[i] <= '9')) {
+                res += s[i];
+            }
+            else if (s[i] === '(') {
+                stack.push(s[i]);
+            }
+            else if (s[i] === ')') {
+                while (stack.length > 0 && stack[stack.length - 1] !== '(') {
+                    res += stack.pop();
+                }
+                stack.pop(); 
+            }
+            else {
+                while (
+                    stack.length > 0 &&
+                    this.priority(s[i]) < this.priority(stack[stack.length - 1]) ||
+                    (s[i] === '^' && stack[stack.length - 1] === '^')
+                ) {
+                    res += stack.pop();
+                }
+                stack.push(s[i]);
+            }
+        }
+        while (stack.length > 0) {
+            res += stack.pop();
+        }
+        return res.split('').reverse().join('');
+    }
+}
+
+
