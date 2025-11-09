@@ -24,4 +24,4 @@ var removeKdigits = function(num, k) {
     res=res.split("").reverse().join("");
     return res === "" ? "0" : res;
 
-};
+}; 
