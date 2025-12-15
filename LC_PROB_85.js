@@ -27,7 +27,7 @@ var maximalRectangle = function(matrix) {
     function lhist(heights) {
         let n = heights.length;
         let stack = [];
-        let maxArea = 0;
+      LC  let maxArea = 0;
 
         for (let i = 0; i <= n; i++) {
             let h = i === n ? 0 : heights[i];
