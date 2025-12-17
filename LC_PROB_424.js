@@ -13,4 +13,4 @@ var characterReplacement = function(s, k) {
         maxlen=Math.max(maxlen,r-l+1);
     }
     return maxlen;
-};
+};LC_PROB
