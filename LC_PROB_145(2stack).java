@@ -1,4 +1,4 @@
- //using 2 stacks
+ // postorder traversal of a tree using 2 stacks
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res=new ArrayList<>();
