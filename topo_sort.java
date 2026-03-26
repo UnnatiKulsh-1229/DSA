@@ -1,4 +1,4 @@
-//topological sort of a graph
+//topological sort of a graph using dfs
 class Solution {
     public void dfs(int n,boolean[]vis,Stack<Integer> s, 
     ArrayList<ArrayList<Integer>> adj){
