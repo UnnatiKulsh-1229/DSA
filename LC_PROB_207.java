@@ -1,41 +1,35 @@
 class Solution {
-    public boolean bfs(ArrayList<ArrayList<Integer>> adj,boolean[] vis){
-        Queue<int[]> q=new LinkedList<>();
-        //boolean[] vis=new boolean[];
-        int snode=0;
-        vis[snode]=true;
-        q.add(new int[]{snode,-1});
-        while(!q.isEmpty()){
-            int n=q.peek()[0];
-            int par=q.peek()[1];
-            q.poll();
-            for(int node:adj.get(n)){
-                if(!vis[node]){
-                    vis[node]=true;
-                    q.add(new int[] {node,n});
-                }
-                else if(node!=par) return true;
-            }
-        }
-    return false;
-}
+    //public void dfs()
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        //if there's a loop then course can't be completed
-        int V=numCourses;
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i=0;i<V;i++){
-            adj.add(new ArrayList<>());
+        ArrayList<ArrayList<Integer>> adj=new ArrayList<>();
+        for(int i=0;i<numCourses;i++){
+            adj.add(new ArrayList<Integer>());
         }
-        for(int[] e : prerequisites){
+        for(int[] e:prerequisites){
             adj.get(e[1]).add(e[0]);
         }
-        
-        boolean[] vis=new boolean[V];
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
-                if(bfs(adj,vis)) return true;
+
+        int[] indegree = new int[numCourses];
+        for (int u = 0; u < numCourses; u++) {
+            for (int v : adj.get(u)) {
+                indegree[v]++;
             }
         }
-        return false;        
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) q.add(i);
+        }
+        int cnt=0;
+        while (!q.isEmpty()) {
+            int node = q.poll();
+            cnt++;
+            for (int neighbor : adj.get(node)) {
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) {
+                    q.add(neighbor);
+                }
+            }
+        }
+        return cnt == numCourses;
     }
 }
