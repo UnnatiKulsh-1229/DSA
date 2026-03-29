@@ -9,13 +9,15 @@ class Solution {
             adj.get(e[1]).add(e[0]);
         }
         Queue<Integer> q=new LinkedList<>();
+        //counting prerequisites for each course
         int[] indegree=new int[numCourses];
         for(int i=0;i<numCourses;i++){
     for(int v: adj.get(i)){
         indegree[v]++;
     }
 }
-        for(int i=0;i<numCourses;i++){
+    //ushing each course with no prerequisites into the queue
+    for(int i=0;i<numCourses;i++){
             if (indegree[i] == 0) {
                 q.offer(i);
             }
