@@ -1,8 +1,3 @@
-/*  class Solution {
-    public void setZeroes(int[][] matrix) {
-        
-    }
-}*/
 class Solution {
     public void setZeroes(int[][] matrix) {
         // Set matrix zero
